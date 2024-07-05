@@ -1,0 +1,43 @@
+.{
+    // This is the default name used by packages depending on this one. For
+    // example, when a user runs `zig fetch --save <url>`, this field is used
+    // as the key in the `dependencies` table. Although the user can choose a
+    // different name, most users will stick with this provided value.
+    //
+    // It is redundant to include "zig" in this name because it is already
+    // within the Zig package namespace.
+    .name = "aws-c-io",
+
+    // This is a [Semantic Version](https://semver.org/).
+    // In a future version of Zig it will be used for package deduplication.
+    .version = "0.0.0",
+
+    // This field is optional.
+    // This is currently advisory only; Zig does not yet do anything
+    // with this value.
+    //.minimum_zig_version = "0.11.0",
+
+    // This field is optional.
+    // Each dependency must either provide a `url` and `hash`, or a `path`.
+    // `zig build --fetch` can be used to fetch all dependencies of a package, recursively.
+    // Once all dependencies are fetched, `zig build` no longer requires
+    // internet connectivity.
+    .dependencies = .{
+        .@"aws-c-common" = .{
+            .url = "https://github.com/aws-pkgs/aws-c-common/archive/2a5666ccb025ba7de1bc03d4e5d249fbfa5dabf8.tar.gz",
+            .hash = "1220fde59610513cbff9373aeaad3cd10567262d538adf1a5a75b3217705b06a5e07",
+        },
+        .@"aws-c-io" = .{
+            .url = "https://github.com/awslabs/aws-c-io/archive/refs/tags/v0.14.9.tar.gz",
+            .hash = "1220a0dc3b5bec552e1d23352b1cfce6b80904a4e04e71185b83328f7e4628f5f9fe",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        // For example...
+        //"LICENSE",
+        //"README.md",
+    },
+}
